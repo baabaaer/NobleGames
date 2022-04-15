@@ -27,6 +27,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Sky")
 		AActor* sunAcrossSky;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
+		float numbersOfDay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
+		float hoursOfDay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
+		float minutesOfDay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
+		float yawOfLight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
+		float absYawOfLight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
+		float pitchOfLight;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
+		float rotCircleDeg = 0.0f;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
