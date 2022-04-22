@@ -28,11 +28,15 @@ public:
 		AActor* sunAcrossSky;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
-		float numbersOfDay;
+		int numbersOfDay;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
-		float hoursOfDay;
+		int hoursOfDay;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
-		float minutesOfDay;
+		int minutesOfDay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
+		int secondsOfDay;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
+		int totalSecondsOfDay;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")
 		float yawOfLight;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Clocking")

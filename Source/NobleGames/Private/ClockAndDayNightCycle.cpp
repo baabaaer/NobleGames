@@ -28,9 +28,6 @@ void AClockAndDayNightCycle::Tick(float DeltaTime)
 
 void AClockAndDayNightCycle::MoveTheSunAcrossTheSky(AActor* sun, float sunSpeed, ADirectionalLight* light)
 {
-
-	//hoursOfDay = sunSpeed / 15 ;
-	//minutesOfDay = ((sunSpeed * 15) - hoursOfDay) * 60;
 	if (light) 
 	{
 		light->AddActorLocalRotation(FRotator((sunSpeed), 0, 0));
@@ -39,33 +36,42 @@ void AClockAndDayNightCycle::MoveTheSunAcrossTheSky(AActor* sun, float sunSpeed,
 		absYawOfLight = abs(yawOfLight);
 
 		if (pitchOfLight < 0) {
-			if (absYawOfLight == 180 ) 
-			{
-				rotCircleDeg = abs(pitchOfLight);
-			}
-			else 
-			{
-				rotCircleDeg = 180 + pitchOfLight;
-			}
-
-		}
-		else if (pitchOfLight >= 0) {
+			
 			if(absYawOfLight == 180)
 			{
-				rotCircleDeg = 360 - pitchOfLight;
+				// Q1
+				rotCircleDeg = -pitchOfLight;
 			}
-			else
+			else if (absYawOfLight == 0)
 			{
+				// Q2
 				rotCircleDeg = 180 + pitchOfLight;
 			}
+
+		}
+		else {
+			if (absYawOfLight == 0)
+			{
+				// Q3
+				rotCircleDeg = 180 + pitchOfLight;
+			}
+			else if(absYawOfLight == 180) 
+			{
+				// Q4
+				rotCircleDeg = 360 - pitchOfLight;
+			}
+			
 		}
 
-		
-		
-		if (sunSpeed >= 360) {
-			sunSpeed = 0;
+		totalSecondsOfDay = rotCircleDeg * 240;
+		hoursOfDay = totalSecondsOfDay / 3600;
+		minutesOfDay = (totalSecondsOfDay - (hoursOfDay * 3600)) / 60;
+		secondsOfDay = totalSecondsOfDay - (hoursOfDay * 3600) - (minutesOfDay * 60);
+		if (hoursOfDay == 23 && minutesOfDay == 59 && secondsOfDay == 59)
+		{
 			numbersOfDay++;
 		}
+
 	}
 	if (sun) {
 		FOutputDeviceNull ar;
